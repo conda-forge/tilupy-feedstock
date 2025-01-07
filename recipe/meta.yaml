@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/tilupy-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/tilupy-{{ version }}.tar.gz
   sha256: ccefb1f16f4e6d7d58a391af454ba396cf8a5111d305185a1da6cac20dc508e1
 
 build:
@@ -15,16 +15,16 @@ build:
     - tilupy_to_raster = tilupy.cmd:_tilupy_to_raster
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.8
+    - python {{ python_min }}
     - setuptools >=61.0.0
     - wheel
     - pip
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     - seaborn
     - requests
     - scipy
@@ -38,6 +38,7 @@ test:
     - tilupy_to_raster --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/marcperuz/tilupy
