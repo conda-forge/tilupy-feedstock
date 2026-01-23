@@ -28,6 +28,9 @@ requirements:
     - seaborn
     - requests
     - scipy
+    - pytopomap
+    - rasterio
+    - shapely
 
 test:
   imports:
